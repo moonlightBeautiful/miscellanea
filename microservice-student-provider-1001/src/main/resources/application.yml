@@ -1,7 +1,6 @@
 server:
   port: 1001
   context-path: /
-
 # 数据源配置
 spring:
   datasource:
@@ -14,3 +13,19 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+# eureka服务中心配置
+eureka:
+  instance:
+    hostname: localhost   # 客户端地址：主机名称或者ip地址
+    appname: microservice-student    # 客户端实服务名
+    instance-id: microservice-student:1001    # 客户端实例名称
+    prefer-ip-address: true   # 是否显示ip
+  client:
+    service-url:
+      defaultZone: http://eureka2001.ims.com:2001/eureka/,http://eureka2002.ims.com:2002/eureka/,http://eureka2003.ims.com:2003/eureka/
+info:
+  groupId: $project.groupId$
+  artifactId: $project.artifactId$
+  version: $project.version$
+  负责人: 张三
+  联系电话: 110

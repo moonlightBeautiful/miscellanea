@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 /**
  * 学生信息实体
- *
+ *  springboot的data-jpa底层默认使用了hibernate
  * @author Administrator
  */
 @Entity

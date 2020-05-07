@@ -15,54 +15,58 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * 服务消费者-学生信息控制器
- * @author Administrator
  *
+ * @author Administrator
  */
 @RestController
-@RequestMapping("/student2")
+@RequestMapping("/student")
 public class StudentConsumerController {
 
-	@Resource
-	private RestTemplate restTemplate;
-	
-	private final static String PRE_HOST="http://localhost:1001";
-	
-	/**
+    @Resource
+    private RestTemplate restTemplate;
+
+    private final static String PROVIDER_HOST = "http://localhost:1001";
+
+    /**
      * 添加或者修改学生信息
+     *
      * @param student
      * @return
      */
-    @PostMapping(value="/save")
-    public boolean save(Student student){
-    	return restTemplate.postForObject(PRE_HOST+"/student/save", student, Boolean.class);
+    @PostMapping(value = "/save")
+    public boolean save(Student student) {
+        return restTemplate.postForObject(PROVIDER_HOST + "/student/save", student, Boolean.class);
     }
 
     /**
      * 查询学生信息
+     *
      * @return
      */
     @SuppressWarnings("unchecked")
-	@GetMapping(value="/list")
-    public List<Student> list(){
-        return restTemplate.getForObject(PRE_HOST+"/student/list", List.class);
+    @GetMapping(value = "/list")
+    public List<Student> list() {
+        return restTemplate.getForObject(PROVIDER_HOST + "/student/list", List.class);
     }
 
     /**
      * 根据id查询学生信息
+     *
      * @return
      */
-    @GetMapping(value="/get/{id}")
-    public Student get(@PathVariable("id") Integer id){
-        return restTemplate.getForObject(PRE_HOST+"/student/get/"+id, Student.class);
+    @GetMapping(value = "/get/{id}")
+    public Student get(@PathVariable("id") Integer id) {
+        return restTemplate.getForObject(PROVIDER_HOST + "/student/get/" + id, Student.class);
     }
 
     /**
      * 根据id删除学生信息
+     *
      * @return
      */
-    @GetMapping(value="/delete/{id}")
-    public boolean delete(@PathVariable("id") Integer id){
-        return restTemplate.getForObject(PRE_HOST+"/student/delete/"+id, Boolean.class);
+    @GetMapping(value = "/delete/{id}")
+    public boolean delete(@PathVariable("id") Integer id) {
+        return restTemplate.getForObject(PROVIDER_HOST + "/student/delete/" + id, Boolean.class);
     }
 
 }

@@ -1,0 +1,18 @@
+server:
+  port: 2001
+  context-path: /
+
+eureka:
+  instance:
+    hostname: eureka2001.ims.com
+      # 如果部署在不同的服务器上，则localhost，部署在一个windows上，则修改hosts文件（C:\Windows\System32\drivers\etc）
+      # 末尾添加
+      #  127.0.0.1 eureka2001.ims.com
+      #  127.0.0.1 eureka2002.ims.com
+      #  127.0.0.1 eureka2003.ims.com
+  client:
+    register-with-eureka: false         # 由于该应用为注册中心，不向注册中心注册自己。
+    fetch-registry: false           # 该应用为服务注册中心，职责为注册和发现服务，无需续约服务，默认每隔30秒向注册中心发送心跳包，续约服务
+    service-url:
+      defaultZone: http://eureka2002.ims.com:2002/eureka/,http://eureka2003.ims.com:2003/eureka/  #集群 其他的服务注册中心地址
+      # 单击 defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
